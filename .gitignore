@@ -1,5 +1,5 @@
 # Visual Studio Code
-.settings.json
+settings.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
