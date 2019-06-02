@@ -1,2 +1,5 @@
 # kubewatch-python
-kubewatch clone written in Python with Slack support
+
+A kubewatch clone written in Python with Slack support.
+
+
