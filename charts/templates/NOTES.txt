@@ -1,0 +1,7 @@
+1. Get the application URL by running these commands:
+1. Check your Slack
+{{- if .Values.slackwebhook}}
+If you have configured your SLACK_WEBHOOK correctly, you should already see python-kubewatch sending Slack messages to your Channel.
+
+SLACK_WEBHOOK: {{ .Values.slackwebhook }}
+{{- end }}

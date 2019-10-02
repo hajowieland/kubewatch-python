@@ -1,0 +1,24 @@
+{{- if .Values.metrics.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "python-kubewatch.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "python-kubewatch.name" . }}
+    helm.sh/chart: {{ include "python-kubewatch.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+  {{- if .Values.metrics.service.annotations }}
+{{ toYaml .Values.metrics.service.annotations | indent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.metrics.service.type }}
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "python-kubewatch.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

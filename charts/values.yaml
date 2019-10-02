@@ -1,0 +1,79 @@
+# Default values for python-kubewatch.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: hajowieland/python-kubewatch
+  tag: 0.2.0
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  name:
+  annotations: {}
+
+slackWebhook: ""
+
+env:
+  CLUSTER: k8s
+
+rbac:
+  create: true
+
+metrics:
+  enabled: true
+  service:
+    type: ClusterIP
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8000" # Should not be changed, we expose metrics on port 8000
+
+kubeResources:
+  clusterroles: "true"
+  clusterrolebindings: "true"
+  configmaps: "false"
+  cronjobs: "true"
+  daemonsets: "true"
+  deployments: "true"
+  ingresses: "true"
+  jobs: "true"
+  limitranges: "false"
+  networkpolicies: "false"
+  nodes: "true"
+  pods: "true"
+  podsecuritypolicies: "false"
+  poddisruptionbudgets: "false"
+  podtemplates: "false"
+  persistentvolumes: "true"
+  persistentvolumeclaims: "true"
+  replicasets: "true"
+  resourcequotas: "false"
+  roles: "true"
+  rolebindings: "true"
+  secrets: "true"
+  services: "true"
+  serviceaccounts: "true"
+  statefulsets: "true"
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

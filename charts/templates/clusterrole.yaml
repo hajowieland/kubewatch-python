@@ -1,0 +1,26 @@
+{{- if .Values.rbac.create -}}
+apiVersion: {{ template "python-kubewatch.rbac.apiVersion" . }}
+kind: ClusterRole
+metadata:
+  name: {{ template "python-kubewatch.fullname" . }}
+  labels:
+    "app.kubernetes.io/name": '{{ template "python-kubewatch.name" .}}'
+    "helm.sh/chart": "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    "app.kubernetes.io/managed-by": "{{ .Release.Service }}"
+    "app.kubernetes.io/instance": "{{ .Release.Name }}"
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - daemonsets
+      - deployments
+      - ingresses
+      - pods
+      - secrets
+      - services
+      - serviceaccounts
+    verbs:
+      - get
+      - list
+      - watch
+{{- end -}}

@@ -1,0 +1,19 @@
+{{- if .Values.rbac.create -}}
+apiVersion: {{ template "python-kubewatch.rbac.apiVersion" . }}
+kind: ClusterRoleBinding
+metadata:
+  name: {{ template "python-kubewatch.fullname" . }}
+  labels:
+    "app.kubernetes.io/name": '{{ template "python-kubewatch.name" .}}'
+    "helm.sh/chart": "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    "app.kubernetes.io/managed-by": "{{ .Release.Service }}"
+    "app.kubernetes.io/instance": "{{ .Release.Name }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "python-kubewatch.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "python-kubewatch.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end -}}
