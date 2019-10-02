@@ -16,7 +16,7 @@ Can be deployed with the Helm chart in the charts/ subfolder.
 * [kubernetes_asyncio](https://pypi.org/project/kubernetes_asyncio/)
 * [prometheus_client](https://pypi.org/project/prometheus_client/)
 
-### ENVVARs:
+### ENVVARs
 
 * `SLACK_WEBHOOK` _(Slack Webook URL)_
 * `CLUSTER` _(cluster name to show in Slack messages)_
@@ -24,9 +24,11 @@ Can be deployed with the Helm chart in the charts/ subfolder.
 
 You can configure the below resources via envvars with the following convention:
 
-**ENABLE_<RESOURCE-NAME-PLURAL-FORM>**
+* Prefixed with *ENABLE_*
+* Plural form of K8s resource
+* Value: *true* or *false*
 
-Example:
+#### Example
 
 **ENABLE_DAEMONSETS** or **ENABLE_INGRESSES**
 
