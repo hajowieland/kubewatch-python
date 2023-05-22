@@ -1,4 +1,4 @@
 asyncio==3.4.3
 kubernetes_asyncio==10.0.0
 prometheus_client==0.7.1
-requests==2.22.0
+requests==2.31.0
